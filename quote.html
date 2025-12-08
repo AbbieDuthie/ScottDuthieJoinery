@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Request a quote | Scott Duthie Joinery LTD</title>
+  <meta name="description" content="Share your project details to receive a tailored quote and timeline." />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/quote.css" />
+  
+  <!-- Netlify reCAPTCHA script -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+<body class="quote-page">
+
+  <!-- Hero Background -->
+  <div class="hero-image"></div>
+  <div class="hero-overlay"></div>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="header-left">
+        <a href="index.html"><img src="images/logo.jpg" alt="Scott Duthie Joinery LTD Logo" class="site-logo"></a>
+      </div>
+
+      <nav class="site-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="testimonials.html">Testimonials</a></li>
+          <li><a class="btn btn-ghost" href="quote.html" aria-current="page">Request a quote</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-right">
+        <a href="https://www.instagram.com/scott_duthie_joinery_ltd/?hl=en" target="_blank">
+          <img src="images/instagram.svg.png" alt="Instagram" class="social-icon">
+        </a>
+        <a href="https://www.facebook.com/people/Scott-Duthie-Joinery-Ltd/61565049851215/#" target="_blank" style="margin-right:16px;">
+          <img src="images/facebook.svg.png" alt="Facebook" class="social-icon">
+        </a>
+      </div>
+
+      <!-- Hamburger Menu Toggle (mobile only) -->
+      <button class="nav-toggle" aria-label="Open menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Menu Panel -->
+  <div class="mobile-menu-panel">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="testimonials.html">Testimonials</a></li>
+      <li><a class="btn-black" href="quote.html">Request a quote</a></li>
+    </ul>
+  </div>
+  <div class="mobile-menu-overlay"></div>
+
+  <!-- MAIN FORM -->
+  <main class="hero-content">
+    <header class="page-header">
+      <h1>Request a quote</h1>
+      <p>Tell us about your project. We’ll follow up with next steps and a tailored estimate.</p>
+    </header>
+
+    <form 
+      class="form-card"
+      method="POST"
+      action="success.html"
+      name="quote"
+      data-netlify="true"
+    >
+      <!-- Hidden field for Netlify form detection -->
+      <input type="hidden" name="form-name" value="quote">
+
+      <!-- Form Fields -->
+      <div class="form-grid two-col">
+        <div class="form-field">
+          <label for="name"><strong>Name:</strong></label>
+          <input type="text" id="name" name="name" placeholder="Your full name" required />
+        </div>
+        <div class="form-field">
+          <label for="email"><strong>Email:</strong></label>
+          <input type="email" id="email" name="email" placeholder="name@example.com" required />
+        </div>
+        <div class="form-field">
+          <label for="phone"><strong>Phone:</strong></label>
+          <input type="tel" id="phone" name="phone" placeholder="+44..." required />
+        </div>
+        <div class="form-field">
+          <label for="location"><strong>Project location:</strong></label>
+          <input type="text" id="location" name="location" placeholder="Town/Area" required />
+        </div>
+      </div>
+
+      <div class="form-grid two-col">
+        <div class="form-field">
+          <label for="type"><strong>Project type:</strong></label>
+          <select id="type" name="type" required>
+            <option value="">Select…</option>
+            <option>Custom home</option>
+            <option>Extension</option>
+            <option>Renovation</option>
+            <option>Interiors</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="budget"><strong>Estimated budget:</strong></label>
+          <select id="budget" name="budget" required>
+            <option value="">Select…</option>
+            <option>£50k–£150k</option>
+            <option>£150k–£300k</option>
+            <option>£300k–£600k</option>
+            <option>£600k+</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label for="timeline"><strong>Ideal timeline:</strong></label>
+        <input type="text" id="timeline" name="timeline" placeholder="e.g., design now, start build in June" required />
+      </div>
+
+      <div class="form-field">
+        <label for="message"><strong>Tell us about your vision:</strong></label>
+        <textarea id="message" name="message" rows="6" placeholder="Goals, style, site context, constraints…" required></textarea>
+      </div>
+
+      <!-- Netlify reCAPTCHA -->
+      <div class="form-field" style="text-align:center; margin-top:16px; margin-bottom:16px;">
+        <div data-netlify-recaptcha="true" class="g-recaptcha" style="display:inline-block;"></div>
+      </div>
+
+      <!-- Form Actions -->
+      <div class="form-actions">
+        <button class="btn btn-primary" type="submit">Submit request</button>
+        <p class="form-note">By submitting, you agree we may contact you regarding your project.</p>
+      </div>
+    </form>
+
+    <!-- Bottom contact text -->
+    <p class="contact-bottom" style="font-family:'Cormorant Garamond', serif; font-size:14px; text-align:center; margin-top:24px;">
+      Contact us: info@scottduthiejoinery.com or alternatively call us today on 07795514570
+    </p>
+  </main>
+
+  <!-- Master JS -->
+  <script src="assets/script.js"></script>
+</body>
+</html>

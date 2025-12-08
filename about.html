@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | Scott Duthie Joinery LTD</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ======================= */
+    /* About Page CSS (Inline) */
+    /* ======================= */
+
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@400;500;600&display=swap');
+
+    :root {
+      --bg: #ffffff;
+      --text: #1b1b1b;
+      --muted: #5a5a5a;
+      --brand: #2f5d62;
+      --brand-2: #bcd4d0;
+      --accent: #c7a17a;
+      --radius: 12px;
+      --shadow: 0 10px 30px rgba(0,0,0,0.08);
+      --container: 1100px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; font-family: 'Inter', sans-serif; color: var(--text); line-height: 1.6; }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: var(--text); }
+    .container { width: 100%; max-width: var(--container); margin: 0 auto; padding: 0 24px; }
+    body.no-scroll { overflow: hidden; }
+
+    /* Header */
+    .site-header { position: absolute; top:0; left:0; width:100%; background: transparent; z-index:50; }
+    .header-inner { display: flex; justify-content: space-between; align-items: flex-start; padding: 4px 0; }
+    .header-left { flex: 0 0 auto; }
+    .site-logo { width:120px; cursor:pointer; }
+
+    .site-nav { flex:1 1 auto; display:flex; justify-content:center; font-family: 'Playfair Display', serif; }
+    .site-nav ul { display:flex; gap:16px; list-style:none; margin:0; padding:0; align-items:center; }
+    .site-nav a { color:#fff; padding:8px 12px; border-radius:50px; font-weight:500; display:inline-block; position:relative; }
+    .site-nav a::after { content:""; position:absolute; left:0; bottom:-4px; width:0; height:2px; background:var(--brand-2); transition: width 0.3s ease; }
+    .site-nav a:hover::after, .site-nav a[aria-current="page"]::after { width:100%; }
+    .site-nav .btn-black { padding:14px 28px; border-radius:50px; background:var(--accent); color:#fff; font-weight:600; border:2px solid var(--accent); transition:all 0.3s ease; }
+    .site-nav .btn-black:hover { background:#b48e66; border-color:#b48e66; }
+
+    .header-right { display:flex; gap:16px; }
+    .social-icon { width:24px; height:24px; }
+
+    /* Mobile menu */
+    .nav-toggle { display:none; position:absolute; left:50%; top:36px; transform:translateX(-50%); width:32px; height:26px; background:none; border:none; cursor:pointer; z-index:9999; padding:0; }
+    .nav-toggle span { display:block; width:100%; height:3px; background:white; border-radius:3px; transition:0.3s ease; }
+    .nav-toggle span:nth-child(2) { margin:6px 0; }
+    .nav-toggle.open span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity:0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+    .mobile-menu-panel { position:fixed; top:0; right:0; width:70%; max-width:320px; height:100vh; background:#f8f8f8; padding:100px 24px; box-shadow:-4px 0 25px rgba(0,0,0,0.25); transform:translateX(100%); transition: transform 0.35s ease; z-index:999; }
+    .mobile-menu-panel.open { transform:translateX(0); }
+    .mobile-menu-panel ul { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:28px; }
+    .mobile-menu-panel a { font-size:20px; font-weight:600; color:#000; }
+    .mobile-menu-panel .btn-black { display:block; background:black; color:white; padding:12px; border-radius:50px; text-align:center; }
+    .mobile-menu-overlay { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.4); opacity:0; visibility:hidden; transition:opacity 0.35s ease; z-index:900; }
+    .mobile-menu-overlay.active { opacity:1; visibility:visible; }
+
+    /* Hero */
+    .hero-about { position:relative; min-height:80vh; display:grid; place-items:center; text-align:center; overflow:hidden; }
+    .hero-about .hero-image { position:absolute; inset:0; background:url("images/luicottage.jpg") center/cover no-repeat; background-size:cover; z-index:-2; }
+    .hero-about .hero-overlay { position:absolute; inset:0; background:linear-gradient(to bottom, rgba(47,93,98,0.55) 0%, rgba(47,93,98,0.55) 70%, rgba(47,93,98,0.15) 90%, #ffffff 100%); z-index:-1; }
+    .hero-about .hero-content { position:relative; max-width:760px; padding: calc(40px + 8vh) 24px 0; }
+    .hero-about .site-title { font-family:'Cormorant Garamond', serif; font-weight:500; font-size:72px; color:#f0f0f0; text-shadow:0 2px 8px rgba(0,0,0,0.3); line-height:1.1; margin-bottom:40px; }
+    .hero-about .site-subtitle { font-family:'Cormorant Garamond', serif; font-size:30px; margin-top:8px; font-weight:80; color:#f0f0f0; }
+
+    /* About Intro */
+    .about-intro { padding:100px 24px 80px; margin-bottom:60px; font-family:'Lora', serif; font-size:18px; line-height:1.75; }
+    .intro-wrapper { display:flex; align-items:flex-start; gap:40px; max-width:var(--container); margin:0 auto; flex-wrap:wrap; }
+    .section-title { font-family:'Playfair Display', serif; font-size:36px; font-weight:700; color:var(--brand); flex:0 0 220px; position:relative; }
+    .section-title::before { content:""; position:absolute; left:-16px; top:0; height:100%; width:4px; background:var(--accent); border-radius:2px; }
+    .brief-text { flex:1; font-family:'Lora', serif; font-size:18px; line-height:1.85; color:var(--muted); }
+    .brief-text p { margin-bottom:16px; }
+
+    /* Photo Cards */
+    .about-photos { display:flex; flex-wrap:wrap; gap:40px; justify-content:center; margin-bottom:80px; }
+    .photo-card { background:#fff; border-radius:var(--radius); overflow:hidden; flex:1 1 48%; max-width:700px; display:flex; flex-direction:column; align-items:center; box-shadow:var(--shadow); text-align:center; opacity:0; transform:translateY(30px); transition:all 0.6s ease-out; }
+    .photo-card.visible { opacity:1; transform:translateY(0); }
+    .photo-card img { width:100%; height:400px; object-fit:cover; }
+    .brief { padding:32px; }
+    .brief h3 { font-family:'Playfair Display', serif; font-size:28px; margin-bottom:16px; color:var(--brand); }
+    .brief p { font-family:'Lora', serif; font-size:16px; color:var(--muted); line-height:1.75; }
+
+    /* Fly-in animations */
+    .section-title, .brief-text { opacity:0; transform:translateX(50px); transition: all 0.8s ease-out; }
+    .section-title.animate, .brief-text.animate { opacity:1; transform:translateX(0); }
+
+    /* Responsive */
+    @media (max-width:1024px) {
+      .hero-about .site-title { font-size:56px; }
+      .about-photos { flex-direction:column; gap:32px; }
+      .intro-wrapper { gap:32px; }
+      .section-title { font-size:32px; flex:0 0 180px; }
+      .brief-text { font-size:16px; }
+    }
+    @media (max-width:768px) {
+      .site-logo { width:80px; }
+      .site-nav ul { display:none; }
+      .nav-toggle { display:block; }
+      .hero-about .hero-content { padding: calc(100px + 8vh) 16px 0; }
+      .about-intro { padding:60px 16px; }
+      .intro-wrapper { flex-direction:column; align-items:flex-start; }
+      .section-title { flex:none; margin-bottom:16px; }
+      .brief-text p { max-width:100%; }
+      .brief { padding:24px; }
+    }
+  </style>
+</head>
+<body class="about">
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="header-left">
+        <a href="index.html"><img src="images/logo.jpg" alt="Scott Duthie Joinery Logo" class="site-logo"></a>
+      </div>
+
+      <nav class="site-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html" aria-current="page">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="testimonials.html">Testimonials</a></li>
+          <li><a href="quote.html" class="btn btn-black">Request a Quote</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-right">
+        <a href="#"><img src="images/instagram.svg.png" alt="Instagram" class="social-icon"></a>
+        <a href="#"><img src="images/facebook.svg.png" alt="Facebook" class="social-icon"></a>
+      </div>
+
+      <button class="nav-toggle" aria-label="Toggle Navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-menu-panel">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html" aria-current="page">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="testimonials.html">Testimonials</a></li>
+      <li><a href="quote.html" class="btn btn-black">Request a Quote</a></li>
+    </ul>
+  </div>
+  <div class="mobile-menu-overlay"></div>
+
+  <!-- HERO -->
+  <section class="hero-about">
+    <div class="hero-image"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1 class="site-title">About Us</h1>
+      <p class="site-subtitle">Craftsmanship. Integrity. Homes built to last.</p>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="about-intro">
+    <div class="intro-wrapper container">
+      <h2 class="section-title">Who We Are</h2>
+      <div class="brief-text">
+        <p>At Scott Duthie Joinery LTD, we believe that a home should embody <em>artistry</em>, <em>individuality</em>, and <em>timeless craftsmanship</em>. For almost two decades, we have been creating bespoke spaces across the North East of Scotland, where attention to detail and refined quality guide every decision.</p>
+        <p>Our approach merges traditional joinery techniques with modern design sensibilities, ensuring each project not only functions beautifully but elevates the lifestyle of those who inhabit it. Every home is treated as a canvas, where precision, integrity, and care are reflected in every corner.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHOTO CARDS -->
+  <section class="about-photos container">
+    <div class="photo-card">
+      <img src="images/balvack.jpg" alt="Our Team">
+      <div class="brief">
+        <h3>Our Team</h3>
+        <p>Our team of seasoned craftsmen, Surveyors, and project managers, all dedicated to excellence. Each member brings a wealth of experience, creativity, and a meticulous eye for detail. Together, we ensure that every project is executed flawlessly, from initial concept to final finish.</p>
+      </div>
+    </div>
+
+    <div class="photo-card">
+      <img src="images/exterior_chimney.jpg" alt="Delivering Bespoke Projects">
+      <div class="brief">
+        <h3>Delivering Bespoke Projects for Almost 2 Decades</h3>
+        <p>For nearly twenty years, we have been creating homes that reflect the unique tastes and lifestyles of our clients. From bespoke new builds to comprehensive renovations, we handle each project with precision, passion, and dedication. Our commitment to quality craftsmanship and innovative solutions ensures that every space we touch becomes a lasting testament to excellence.</p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const navToggle = document.querySelector('.nav-toggle');
+      const mobilePanel = document.querySelector('.mobile-menu-panel');
+      const overlay = document.querySelector('.mobile-menu-overlay');
+
+      const openMenu = () => { navToggle.classList.add('open'); mobilePanel.classList.add('open'); overlay.classList.add('active'); document.body.classList.add('no-scroll'); };
+      const closeMenu = () => { navToggle.classList.remove('open'); mobilePanel.classList.remove('open'); overlay.classList.remove('active'); document.body.classList.remove('no-scroll'); };
+      navToggle.addEventListener('click', () => mobilePanel.classList.contains('open') ? closeMenu() : openMenu());
+      overlay.addEventListener('click', closeMenu);
+      mobilePanel.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+
+      // IntersectionObserver for fly-in
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting) {
+            const el = entry.target;
+            if(el.classList.contains('section-title') || el.classList.contains('brief-text')) el.classList.add('animate');
+            if(el.classList.contains('photo-card')) { setTimeout(()=> el.classList.add('visible'), Number(el.dataset.index)*150); }
+            obs.unobserve(el);
+          }
+        });
+      }, { threshold:0.1 });
+
+      document.querySelectorAll('.section-title, .brief-text').forEach(el => observer.observe(el));
+      document.querySelectorAll('.photo-card').forEach((el, idx)=>{ el.dataset.index=idx; observer.observe(el); });
+    });
+  </script>
+
+</body>
+</html>
