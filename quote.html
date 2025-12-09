@@ -11,9 +11,14 @@
 
   <!-- CSS -->
   <link rel="stylesheet" href="assets/quote.css" />
-  
-  <!-- Netlify reCAPTCHA script -->
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.emailjs.com/sdk/3.2/email.min.js"></script>
+  <script type="text/javascript">
+    (function(){
+      emailjs.init("ezOKdoRyWrNPg-sEj"); // Replace with your EmailJS public key
+    })();
+  </script>
 </head>
 <body class="quote-page">
 
@@ -48,7 +53,6 @@
         </a>
       </div>
 
-      <!-- Hamburger Menu Toggle (mobile only) -->
       <button class="nav-toggle" aria-label="Open menu">
         <span></span>
         <span></span>
@@ -79,14 +83,8 @@
 
     <form 
       class="form-card"
-      method="POST"
-      action="success.html"
-      name="quote"
-      data-netlify="true"
+      id="quote-form"
     >
-      <!-- Hidden field for Netlify form detection -->
-      <input type="hidden" name="form-name" value="quote">
-
       <!-- Form Fields -->
       <div class="form-grid two-col">
         <div class="form-field">
@@ -140,11 +138,6 @@
         <textarea id="message" name="message" rows="6" placeholder="Goals, style, site context, constraints…" required></textarea>
       </div>
 
-      <!-- Netlify reCAPTCHA -->
-      <div class="form-field" style="text-align:center; margin-top:16px; margin-bottom:16px;">
-        <div data-netlify-recaptcha="true" class="g-recaptcha" style="display:inline-block;"></div>
-      </div>
-
       <!-- Form Actions -->
       <div class="form-actions">
         <button class="btn btn-primary" type="submit">Submit request</button>
@@ -160,5 +153,34 @@
 
   <!-- Master JS -->
   <script src="assets/script.js"></script>
+
+  <!-- EmailJS form submission -->
+  <script type="text/javascript">
+    const form = document.getElementById('quote-form');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const templateParams = {
+        name: form.name.value,
+        email: form.email.value,
+        phone: form.phone.value,
+        location: form.location.value,
+        type: form.type.value,
+        budget: form.budget.value,
+        timeline: form.timeline.value,
+        message: form.message.value
+      };
+
+      emailjs.send('service_95fadlh', 'template_3fc0gx6', templateParams)
+        .then(function(response) {
+          console.log('SUCCESS!', response.status, response.text);
+          window.location.href = 'success.html';
+        }, function(error) {
+          console.log('FAILED...', error);
+          alert("Oops! Something went wrong. Please try again.");
+        });
+    });
+  </script>
 </body>
 </html>

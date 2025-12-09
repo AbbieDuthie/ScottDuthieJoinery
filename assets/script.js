@@ -116,4 +116,34 @@ document.addEventListener('DOMContentLoaded', () => {
     GLightbox({ selector: '.glightbox' });
   }
 
+  // ------------------------------
+  // EmailJS form submission
+  // ------------------------------
+  const form = document.getElementById('quote-form');
+  if (form) {
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const templateParams = {
+        name: form.name.value,
+        email: form.email.value,
+        phone: form.phone.value,
+        location: form.location.value,
+        type: form.type.value,
+        budget: form.budget.value,
+        timeline: form.timeline.value,
+        message: form.message.value
+      };
+
+      emailjs.send('service_95fadlh', 'template_3fc0gx6', templateParams)
+        .then(function(response) {
+          console.log('SUCCESS!', response.status, response.text);
+          window.location.href = 'success.html';
+        }, function(error) {
+          console.log('FAILED...', error);
+          alert("Oops! Something went wrong. Please try again.");
+        });
+    });
+  }
+
 });

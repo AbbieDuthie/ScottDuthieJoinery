@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Services | Scott Duthie Joinery LTD</title>
   <meta name="description" content="Custom homes, extensions, renovations, and interior craftsmanship tailored to your life." />
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Playfair+Display:wght@400;700&family=Cormorant+Garamond:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/services.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Playfair+Display:wght@400;700&family=Lora:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/services.css">
 </head>
 <body class="services">
 
@@ -68,7 +68,7 @@
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <h1 class="site-title">Our Services</h1>
-      <p class="site-subtitle">From first idea to final finish, we provide an end-to-end, detail-focused build experience.</p>
+      <p class="site-subtitle">From the start to final completion, we provide an end-to-end, detail-focused build experience.</p>
     </div>
   </section>
 
@@ -114,7 +114,6 @@
 
   <!-- SCRIPTS -->
   <script>
-    // Mobile nav toggle
     const toggle = document.querySelector('.nav-toggle');
     const menuPanel = document.querySelector('.mobile-menu-panel');
     const menuOverlay = document.querySelector('.mobile-menu-overlay');
@@ -145,7 +144,6 @@
       });
     });
 
-    // Fly-in animation for service cards
     document.addEventListener('DOMContentLoaded', () => {
       const observerOptions = { threshold: 0.1 };
 
@@ -164,7 +162,6 @@
         observer.observe(card);
       });
 
-      // If cards are already visible on load, mark them visible
       document.querySelectorAll('.service-card').forEach(card => {
         if (card.getBoundingClientRect().top < window.innerHeight) {
           card.classList.add('visible');
