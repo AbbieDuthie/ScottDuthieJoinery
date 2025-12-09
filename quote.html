@@ -14,11 +14,6 @@
 
   <!-- EmailJS SDK -->
   <script type="text/javascript" src="https://cdn.emailjs.com/sdk/3.2/email.min.js"></script>
-  <script type="text/javascript">
-    (function(){
-      emailjs.init("ezOKdoRyWrNPg-sEj"); // Replace with your EmailJS public key
-    })();
-  </script>
 </head>
 <body class="quote-page">
 
@@ -81,11 +76,7 @@
       <p>Tell us about your project. We’ll follow up with next steps and a tailored estimate.</p>
     </header>
 
-    <form 
-      class="form-card"
-      id="quote-form"
-    >
-      <!-- Form Fields -->
+    <form class="form-card" id="quote-form">
       <div class="form-grid two-col">
         <div class="form-field">
           <label for="name"><strong>Name:</strong></label>
@@ -138,15 +129,13 @@
         <textarea id="message" name="message" rows="6" placeholder="Goals, style, site context, constraints…" required></textarea>
       </div>
 
-      <!-- Form Actions -->
       <div class="form-actions">
         <button class="btn btn-primary" type="submit">Submit request</button>
         <p class="form-note">By submitting, you agree we may contact you regarding your project.</p>
       </div>
     </form>
 
-    <!-- Bottom contact text -->
-    <p class="contact-bottom" style="font-family:'Cormorant Garamond', serif; font-size:14px; text-align:center; margin-top:24px;">
+    <p class="contact-bottom">
       Contact us: info@scottduthiejoinery.com or alternatively call us today on 07795514570
     </p>
   </main>
@@ -154,33 +143,5 @@
   <!-- Master JS -->
   <script src="assets/script.js"></script>
 
-  <!-- EmailJS form submission -->
-  <script type="text/javascript">
-    const form = document.getElementById('quote-form');
-
-    form.addEventListener('submit', function(event) {
-      event.preventDefault();
-
-      const templateParams = {
-        name: form.name.value,
-        email: form.email.value,
-        phone: form.phone.value,
-        location: form.location.value,
-        type: form.type.value,
-        budget: form.budget.value,
-        timeline: form.timeline.value,
-        message: form.message.value
-      };
-
-      emailjs.send('service_95fadlh', 'template_3fc0gx6', templateParams)
-        .then(function(response) {
-          console.log('SUCCESS!', response.status, response.text);
-          window.location.href = 'success.html';
-        }, function(error) {
-          console.log('FAILED...', error);
-          alert("Oops! Something went wrong. Please try again.");
-        });
-    });
-  </script>
 </body>
 </html>
