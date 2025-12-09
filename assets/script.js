@@ -59,9 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const observerCallback = (entries, observer) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        const el = entry.target;
-        el.classList.add('visible');
-        observer.unobserve(el);
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
       }
     });
   };
@@ -81,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ------------------------------
-  // EmailJS initialization
+  // EmailJS initialization and form submission
   // ------------------------------
   if (typeof emailjs !== 'undefined') {
     emailjs.init("ezOKdoRyWrNPg-sEj"); // Public key
@@ -109,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
           window.location.href = 'success.html';
         })
         .catch(error => {
-          console.log('FAILED...', error);
+          console.error('FAILED...', error);
           alert("Oops! Something went wrong. Please try again.");
         });
     });
