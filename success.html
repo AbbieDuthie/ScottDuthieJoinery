@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Request received | Scott Duthie Joinery LTD</title>
   <meta name="description" content="Thank you—your request has been received. We’ll be in touch shortly." />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
   <link rel="stylesheet" href="assets/quote.css" />
 </head>
 <body class="quote-page">
@@ -27,7 +32,7 @@
           <li><a href="services.html">Services</a></li>
           <li><a href="projects.html">Projects</a></li>
           <li><a href="testimonials.html">Testimonials</a></li>
-          <li><a class="btn btn-ghost" href="quote.html">Request a quote</a></li>
+          <li><a class="btn btn-ghost" href="quote.html" aria-current="page">Request a quote</a></li>
         </ul>
       </nav>
 
@@ -40,8 +45,7 @@
         </a>
       </div>
 
-      <!-- Fixed: class matches JS -->
-      <button class="nav-toggle" aria-label="Open mobile menu">
+      <button class="nav-toggle" aria-label="Toggle Navigation">
         <span></span>
         <span></span>
         <span></span>
@@ -49,7 +53,7 @@
     </div>
   </header>
 
-  <!-- Mobile Menu Panel -->
+  <!-- Mobile Menu Panel & Overlay -->
   <div class="mobile-menu-panel">
     <ul>
       <li><a href="index.html">Home</a></li>
@@ -57,7 +61,7 @@
       <li><a href="services.html">Services</a></li>
       <li><a href="projects.html">Projects</a></li>
       <li><a href="testimonials.html">Testimonials</a></li>
-      <li><a href="quote.html">Request a quote</a></li>
+      <li><a class="btn-black" href="quote.html">Request a quote</a></li>
     </ul>
   </div>
   <div class="mobile-menu-overlay"></div>
@@ -74,7 +78,23 @@
     </section>
   </main>
 
-  <!-- Master JS -->
-  <script src="assets/script.js"></script>
+  <!-- Global JS for mobile menu toggle -->
+  <script>
+    const navToggle = document.querySelector('.nav-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu-panel');
+    const overlay = document.querySelector('.mobile-menu-overlay');
+
+    function toggleMenu() {
+      navToggle.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+      overlay.classList.toggle('active');
+      document.body.classList.toggle('no-scroll');
+    }
+
+    navToggle.addEventListener('click', toggleMenu);
+    overlay.addEventListener('click', toggleMenu);
+    document.querySelectorAll('.mobile-menu-panel a').forEach(link => link.addEventListener('click', toggleMenu));
+  </script>
+
 </body>
 </html>

@@ -21,15 +21,8 @@
         <a href="index.html"><img src="images/logo.jpg" alt="Scott Duthie Joinery Logo" class="site-logo"></a>
       </div>
 
-      <!-- Hamburger Toggle -->
-      <button class="nav-toggle" aria-expanded="false">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-
       <nav class="site-nav">
-        <ul class="nav-list">
+        <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="services.html">Services</a></li>
@@ -47,11 +40,14 @@
           <img src="images/facebook.svg.png" alt="Facebook" class="social-icon">
         </a>
       </div>
+
+      <button class="nav-toggle" aria-label="Toggle Navigation">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
 
   <!-- Mobile Menu Panel & Overlay -->
-  <div class="mobile-menu-overlay"></div>
   <div class="mobile-menu-panel">
     <ul>
       <li><a href="index.html">Home</a></li>
@@ -62,6 +58,7 @@
       <li><a href="quote.html" class="btn-black">Request a Quote</a></li>
     </ul>
   </div>
+  <div class="mobile-menu-overlay"></div>
 
   <!-- HERO + TESTIMONIALS -->
   <section class="hero-testimonials">
@@ -81,22 +78,31 @@
 
   <!-- Global JS -->
   <script>
-    const navToggle = document.querySelector('.nav-toggle');
-    const mobileMenu = document.querySelector('.mobile-menu-panel');
-    const overlay = document.querySelector('.mobile-menu-overlay');
+    document.addEventListener('DOMContentLoaded', () => {
+      const navToggle = document.querySelector('.nav-toggle');
+      const mobilePanel = document.querySelector('.mobile-menu-panel');
+      const overlay = document.querySelector('.mobile-menu-overlay');
 
-    function toggleMenu() {
-      navToggle.classList.toggle('open');
-      mobileMenu.classList.toggle('open');
-      overlay.classList.toggle('active');
-      document.body.classList.toggle('no-scroll');
-    }
+      const openMenu = () => {
+        navToggle.classList.add('open');
+        mobilePanel.classList.add('open');
+        overlay.classList.add('active');
+        document.body.classList.add('no-scroll');
+      };
 
-    navToggle.addEventListener('click', toggleMenu);
-    overlay.addEventListener('click', toggleMenu);
+      const closeMenu = () => {
+        navToggle.classList.remove('open');
+        mobilePanel.classList.remove('open');
+        overlay.classList.remove('active');
+        document.body.classList.remove('no-scroll');
+      };
 
-    document.querySelectorAll('.mobile-menu-panel a').forEach(link => {
-      link.addEventListener('click', toggleMenu);
+      navToggle.addEventListener('click', () => {
+        mobilePanel.classList.contains('open') ? closeMenu() : openMenu();
+      });
+
+      overlay.addEventListener('click', closeMenu);
+      mobilePanel.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
     });
   </script>
 

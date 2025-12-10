@@ -15,7 +15,7 @@
   <!-- EmailJS SDK -->
   <script defer src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
-<!-- Master JS -->
+  <!-- Master JS -->
   <script defer src="assets/script.js"></script>
 </head>
 <body class="quote-page">
@@ -51,15 +51,13 @@
         </a>
       </div>
 
-      <button class="nav-toggle" aria-label="Open menu">
-        <span></span>
-        <span></span>
-        <span></span>
+      <button class="nav-toggle" aria-label="Toggle Navigation">
+        <span></span><span></span><span></span>
       </button>
     </div>
   </header>
 
-  <!-- Mobile Menu Panel -->
+  <!-- Mobile Menu Panel & Overlay -->
   <div class="mobile-menu-panel">
     <ul>
       <li><a href="index.html">Home</a></li>
@@ -142,6 +140,36 @@
       Contact us: info@scottduthiejoinery.com or alternatively call us today on 07795514570
     </p>
   </main>
+
+  <!-- Mobile Menu JS -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const navToggle = document.querySelector('.nav-toggle');
+      const mobilePanel = document.querySelector('.mobile-menu-panel');
+      const overlay = document.querySelector('.mobile-menu-overlay');
+
+      const openMenu = () => {
+        navToggle.classList.add('open');
+        mobilePanel.classList.add('open');
+        overlay.classList.add('active');
+        document.body.classList.add('no-scroll');
+      };
+
+      const closeMenu = () => {
+        navToggle.classList.remove('open');
+        mobilePanel.classList.remove('open');
+        overlay.classList.remove('active');
+        document.body.classList.remove('no-scroll');
+      };
+
+      navToggle.addEventListener('click', () => {
+        mobilePanel.classList.contains('open') ? closeMenu() : openMenu();
+      });
+
+      overlay.addEventListener('click', closeMenu);
+      mobilePanel.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+    });
+  </script>
 
 </body>
 </html>
